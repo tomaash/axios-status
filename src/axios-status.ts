@@ -38,8 +38,8 @@ export interface AxiosResponse {
 }
 
 export interface AxiosStatusOptions {
-	timeout: number
-	autoRetry: boolean
+	timeout?: number
+	autoRetry?: boolean
 }
 
 export interface ExecuteRequestOptions {
@@ -61,7 +61,7 @@ export class AxiosStatus extends EventEmitter {
 	timeout: number = 10
 	autoRetry: boolean = false
 
-	constructor(options?: any) {
+	constructor(options?: AxiosStatusOptions) {
 		super()
 		if (options && options.timeout) this.timeout = options.timeout
 		if (options && options.autoRetry) this.autoRetry = options.autoRetry
