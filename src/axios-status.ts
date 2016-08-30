@@ -93,9 +93,9 @@ export class AxiosStatus extends EventEmitter {
 		if (param.message === 'Network Error') {
 			if (this.disconnected === false) this.emit('offline', true)
 			this.disconnected = true
+			// Add current axios call to deferred because network is offline
+			this.deferredAxiosCalls.push(param.config)
 			if (this.autoRetry) {
-				// Add current axios call to deferred because network is offline
-				this.deferredAxiosCalls.push(param.config)
 				this.secondsToReconnect = this.timeout
 				this.emit('timer', this.secondsToReconnect)
 				// Reset interval on every new network error

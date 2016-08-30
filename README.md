@@ -8,14 +8,19 @@ This package can be used to trace status of all Axios requests for the purpose o
 
 ## Usage:
 
-First, create a new instance of AxiosStatus, and register your axios instances with it
+First, create a new instance of AxiosStatus, and register your axios instances with it. You can provide following options to constructor
 
 ```js
-const axiosStatus = new AxiosStatus()
+const axiosStatus = new AxiosStatus({
+  timeout: 20, // default 10
+  autoRetry: true // default false
+})
 
 axiosStatus.register(axios)
 axiosStatus.register(mySpecialAxiosInstance)
 ```
+
+The `autoRetry` options specifies if `axiosStatus` should auto retry all failed requests after given `timeout` (seconds)
 
 Then, you can subscribe on `AxiosStatus` events to be able to show them in UI. 
 
