@@ -35,14 +35,18 @@ axiosStatus.on('offline', (val) => this.disconnected = val)
 axiosStatus.on('timer', (val) => this.secondsToReconnect = val)
 ```
 
-To be able to correctly run a callback on auto-retry, you need to use `axiosStatus.request` with a `success` callback 
+To be able to correctly run a callback on auto-retry, you need to use `axiosStatus.request`. It supports all axios request options, plus `success` callback, `error` callback, and `instance` to specify axios instance on which this request should be run. 
 
 ```js
 axiosStatus.request({
+  instance: mySpecialAxiosInstance,	
   method: 'get',
   url: API_URL + '/me',
   success: (res) => {
     this.user = res.data
+  },
+  error: (err) => {
+  	throw err
   }
 })
 ```
