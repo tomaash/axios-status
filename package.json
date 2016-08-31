@@ -1,6 +1,6 @@
 {
   "name": "axios-status",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Network requests status tracking for Axios",
   "main": "lib/axios-status.js",
   "typings": "lib/axios-status.d.ts",

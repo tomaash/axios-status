@@ -47,6 +47,7 @@ export interface ExecuteRequestOptions {
 	method?: string
 	params?: any
 	data?: any
+	instance?: any
 	success: (res: AxiosResponse) => any
 	error?: (err: AxiosError) => any
 	transformRequest?: any
@@ -141,7 +142,7 @@ export class AxiosStatus extends EventEmitter {
 	}
 
 	request = (config: ExecuteRequestOptions): Promise<AxiosResponse> => {
-		return axios.request(config)
+		return (config.instance || axios).request(config)
 			.then(config.success)
 			.catch(config.error || function (err) { throw err })
 	}
