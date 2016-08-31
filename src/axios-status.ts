@@ -124,15 +124,13 @@ export class AxiosStatus extends EventEmitter {
 	request = (config: ExecuteRequestOptions): Promise<AxiosResponse> => {
 		return axios.request(config)
 			.then(config.success)
-			.catch(config.error)
+			.catch(config.error || function (err) { throw err })
 	}
 
 	retry = () => {
 		while (this.deferredAxiosCalls.length) {
 			const cfg = this.deferredAxiosCalls.shift()
-			axios.request(cfg)
-				.then(cfg.success)
-				.catch(cfg.error || function (err) { throw err })
+			this.request(cfg)
 		}
 	}
 }
