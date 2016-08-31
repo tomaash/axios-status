@@ -49,6 +49,25 @@ export interface ExecuteRequestOptions {
 	data?: any
 	success: (res: AxiosResponse) => any
 	error?: (err: AxiosError) => any
+	transformRequest?: any
+	transformResponse?: any
+	headers?: any;
+	paramsSerializer?: (params: any) => string;
+	timeout?: number;
+	withCredentials?: boolean;
+	adapter?: any
+	auth?: any
+	responseType?: string;
+	xsrfCookieName?: string;
+	xsrfHeaderName?: string;
+	onUploadProgress?: (progressEvent: any) => void;
+	onDownloadProgress?: (progressEvent: any) => void;
+	maxContentLength?: number;
+	validateStatus?: (status: number) => boolean;
+	maxRedirects?: number;
+	httpAgent?: any;
+	httpsAgent?: any;
+	proxy?: any;
 }
 
 export class AxiosStatus extends EventEmitter {
