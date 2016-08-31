@@ -68,11 +68,9 @@ export class AxiosStatus extends EventEmitter {
 	}
 
 	inc = (param) => {
-		console.log(param.url)
 		// this.deferredAxiosCall = null
 		if (this.loadingProgress === 0) this.emit('busy', true)
 		this.loadingProgress += 1
-		console.log(this.loadingProgress)
 		return param
 	}
 
@@ -80,10 +78,8 @@ export class AxiosStatus extends EventEmitter {
 		if (this.disconnected === true) this.emit('offline', false)
 		this.disconnected = false
 		var response = param.status ? param : param.response
-		console.log(response.status + ' ' + response.config.url)
 		this.loadingProgress -= 1
 		if (this.loadingProgress === 0) this.emit('busy', false)
-		console.log(this.loadingProgress)
 		return param
 	}
 
@@ -115,8 +111,6 @@ export class AxiosStatus extends EventEmitter {
 			if (this.disconnected === true) this.emit('offline', false)
 			this.disconnected = false
 			var response = param.response
-			console.log('ERR ' + response.status + ' ' + response.config.url)
-			console.log(this.loadingProgress)
 		}
 		throw (param)
 	}
