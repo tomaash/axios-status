@@ -1,6 +1,6 @@
 {
   "name": "axios-status",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Network requests status tracking for Axios",
   "main": "lib/axios-status.js",
   "typings": "lib/axios-status.d.ts",
@@ -59,13 +59,15 @@
     "uglify-js": "^2.6.1"
   },
   "dependencies": {
-    "axios": "^0.14.0",
     "events": "^1.1.1"
   },
+  "peerDependencies": {
+    "axios": "^0.14.0"
+  },
   "keywords": [
-    "mobx",
-    "i18n",
-    "translations",
-    "typescript"
+    "axios",
+    "status",
+    "request",
+    "xhr"
   ]
 }
