@@ -80,6 +80,7 @@ export class AxiosStatus extends EventEmitter {
 	axiosInstances: Array<any> = []
 	timeout: number = 10
 	autoRetry: boolean = false
+	defaultInstance: any
 
 	constructor(options?: AxiosStatusOptions) {
 		super()
@@ -135,6 +136,10 @@ export class AxiosStatus extends EventEmitter {
 		throw (param)
 	}
 
+	setDefaultInstance = (axiosInstance: any) => {
+		this.defaultInstance = axiosInstance
+	}
+
 	register = (axiosInstance: any) => {
 		this.axiosInstances.push(axiosInstance)
 		axiosInstance.interceptors.request.use(this.inc, this.err)
@@ -142,7 +147,7 @@ export class AxiosStatus extends EventEmitter {
 	}
 
 	request = (config: ExecuteRequestOptions): Promise<AxiosResponse> => {
-		return (config.instance || axios).request(config)
+		return (config.instance || this.defaultInstance || axios).request(config)
 			.then(config.success)
 			.catch(config.error || function (err) { throw err })
 	}
